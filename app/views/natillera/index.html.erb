@@ -1,2 +1,10 @@
-<h1>Natillera#index</h1>
-<p>Find me in app/views/natillera/index.html.erb</p>
+<h1>Bienvenido <%=current_user.name%> a Natillera</h1>
+<h2>Sus Ahorros son: <%=@saves.sum(:money)%></h2>
+<%@saves.each do |save|%>
+<p><%=save.month.strftime("%B")%> <%=save.money%> <%=save.note%></p>
+<%end%>
+<h2>Actividades de la Natillera</h2>
+<strong>Ganancias: <%=@activities.sum(:earn)%></strong>
+<%@activities.each do |activity|%>
+<p> <%=activity.date.strftime("%B")%> <%=activity.activity%> <%=activity.earn%> <%=activity.note%></p>
+<%end%>

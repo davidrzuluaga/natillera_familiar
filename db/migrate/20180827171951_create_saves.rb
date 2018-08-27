@@ -4,6 +4,7 @@ class CreateSaves < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
       t.decimal :money
       t.date :month
+      t.string :note
 
       t.timestamps
     end
