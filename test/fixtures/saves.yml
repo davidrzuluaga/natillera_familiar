@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: saves
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  money      :decimal(, )
+#  month      :date
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  money: 9.99
+  month: 2018-08-27
+
+two:
+  user: two
+  money: 9.99
+  month: 2018-08-27
