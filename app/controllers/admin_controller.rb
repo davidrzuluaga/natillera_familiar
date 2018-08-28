@@ -4,6 +4,8 @@ class AdminController < ApplicationController
     def index
         if current_user.admin?
             @users = User.where(published: true)
+            @ahorrototal = Save.sum(:money)
+            @beneficiototal = Activity.sum(:earn)
         else
             redirect_to inicio_path
         end
