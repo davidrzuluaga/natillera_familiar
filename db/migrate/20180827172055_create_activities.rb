@@ -5,7 +5,7 @@ class CreateActivities < ActiveRecord::Migration[5.2]
       t.decimal :earn
       t.string :activity
       t.string :note
-      t.string :date
+      t.date :date
 
       t.timestamps
     end
