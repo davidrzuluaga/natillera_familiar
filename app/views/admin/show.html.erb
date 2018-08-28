@@ -1,28 +1,41 @@
-<h1>Usuario <%=@user.name%></h1>
-<h2>Ahorros: <%=@saves.sum(:money)%></h2>
-<%@saves.each do |save|%>
-<p><%=save.month.strftime("%B")%> <%=save.money%> <%=save.note%></p>
-<%end%>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
 
-<%= form_for @saves.build, url: newsaves_path, html: {method: "post"} do |f| %>
-    <%= f.hidden_field :user_id, :integer => @user.id %>
-    <%= f.text_field :month, placeholder:"Fecha" %>
-    <%= f.text_field :money, placeholder:"Dinero"%>
-    <%= f.text_field :note, placeholder:"Nota"%>
-    <%= f.submit 'Comment', class: 'btn btn-secondary btn-sm', id:"card" %>
-<% end %>
+        <div class="thing">
+            <div class="container">
+              <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key == "" ? "success" : key %>"><%= value %></div>
+              <% end %>
+            </div>
 
-<h2>Actividades de la Natillera</h2>
-<strong>Ganancias: <%=@activities.sum(:earn)%></strong>
-<%@activities.each do |activity|%>
-<p> <%=activity.date.strftime("%B")%> <%=activity.activity%> <%=activity.earn%> <%=activity.note%></p>
-<%end%>
+            <h1>Usuario <%=@user.name%></h1>
+            <h2>Ahorros: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></h2>
 
-<%= form_for @activities.build, url: newactivities_path, html: {method: "post"} do |f| %>
-    <%= f.hidden_field :user_id, :integer => @user.id %>
-    <%= f.text_field :date, placeholder:"Fecha"%>    
-    <%= f.text_field :activity, placeholder:"Actividad"%>
-    <%= f.text_field :earn, placeholder:"Ganancia"%>    
-    <%= f.text_field :note, placeholder:"Nota"%>
-    <%= f.submit 'Comment', class: 'btn btn-secondary btn-sm', id:"card" %>
-<% end %>
+            <%=render 'layouts/savestable'%>
+
+            <%= form_for @saves.build, url: newsaves_path, html: {method: "post"} do |f| %>
+                <%= f.hidden_field :user_id, :integer => @user.id %>
+                <%= f.date_select :month, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
+                <%= f.text_field :money, placeholder:"Dinero"%>
+                <%= f.text_field :note, placeholder:"Nota"%>
+                <%= f.submit 'Subir', class: 'btn btn-secondary btn-sm', id:"card" %>
+            <% end %>
+        </div>
+
+        <div class="thing">
+            <h2>Actividades de la Natillera</h2>
+            <strong>Ganancias: <%=number_to_currency(@activities.sum(:earn), :unit => "$")%></strong>
+    
+            <%=render 'layouts/activitytable'%>    
+    
+            <%= form_for @activities.build, url: newactivities_path, html: {method: "post"} do |f| %>
+                <%= f.hidden_field :user_id, :integer => @user.id %>
+                <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
+                <%= f.text_field :activity, placeholder:"Actividad"%>
+                <%= f.text_field :earn, placeholder:"Ganancia"%>    
+                <%= f.text_field :note, placeholder:"Nota"%>
+                <%= f.submit 'Subir', class: 'btn btn-secondary btn-sm', id:"card" %>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,20 @@
-<h1>Bienvenido <%=current_user.name%> a Natillera</h1>
-<h2>Sus Ahorros son: <%=@saves.sum(:money)%></h2>
-<%@saves.each do |save|%>
-<p><%=save.month.strftime("%B")%> <%=save.money%> <%=save.note%></p>
-<%end%>
-<h2>Actividades de la Natillera</h2>
-<strong>Ganancias: <%=@activities.sum(:earn)%></strong>
-<%@activities.each do |activity|%>
-<p> <%=activity.date.strftime("%B")%> <%=activity.activity%> <%=activity.earn%> <%=activity.note%></p>
-<%end%>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="thing">
+
+            <h1>Bienvenido <%=current_user.name%> a Natillera</h1>
+            <h2>Sus Ahorros han sido: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></h2>
+
+            <%=render 'layouts/savestable'%>
+        </div>
+        
+        <div class="thing">
+
+            <h2>Actividades de la Natillera</h2>
+            <strong>Ganancias: <%=number_to_currency(@activities.sum(:earn), :unit => "$")%></strong>
+
+            <%=render 'layouts/activitytable'%>
+        </div>
+
+    </div>
+</div>
