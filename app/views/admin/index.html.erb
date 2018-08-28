@@ -3,8 +3,8 @@
 
         <h1>Administrador: <%=current_user.name%>, Bienvenido a Natillera</h1>
         <div class="offset-md-2">
-            <p>Ahorro de todos los usuarios: <%=@ahorrototal%></p>
-            <p>Beneficio de todas las actividades: <%=@beneficiototal%></p>
+            <p>Ahorro de todos los usuarios: <%=number_to_currency(@ahorrototal, :unit => "$")%></p>
+            <p>Beneficio de todas las actividades: <%=number_to_currency(@beneficiototal, :unit => "$")%></p>
             <h3>Selecciona un usuario para comenzar</h3>
 
             <%@users.each do |user|%>
