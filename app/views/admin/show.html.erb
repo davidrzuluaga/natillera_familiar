@@ -4,8 +4,25 @@
 <p><%=save.month.strftime("%B")%> <%=save.money%> <%=save.note%></p>
 <%end%>
 
+<%= form_for @saves.build, url: newsaves_path, html: {method: "post"} do |f| %>
+    <%= f.hidden_field :user_id, :integer => @user.id %>
+    <%= f.text_field :month %>
+    <%= f.text_field :money%>
+    <%= f.text_field :note%>
+    <%= f.submit 'Comment', class: 'btn btn-secondary btn-sm', id:"card" %>
+<% end %>
+
 <h2>Actividades de la Natillera</h2>
 <strong>Ganancias: <%=@activities.sum(:earn)%></strong>
 <%@activities.each do |activity|%>
 <p> <%=activity.date.strftime("%B")%> <%=activity.activity%> <%=activity.earn%> <%=activity.note%></p>
 <%end%>
+
+<%= form_for @activities.build, url: newactivities_path, html: {method: "post"} do |f| %>
+    <%= f.hidden_field :user_id, :integer => @user.id %>
+    <%= f.text_field :date%>    
+    <%= f.text_field :activity%>
+    <%= f.text_field :earn%>    
+    <%= f.text_field :note%>
+    <%= f.submit 'Comment', class: 'btn btn-secondary btn-sm', id:"card" %>
+<% end %>
