@@ -3,7 +3,7 @@ class AdminController < ApplicationController
 
     def index
         if current_user.admin?
-            @users = User.all
+            @users = User.where(published: true)
         else
             redirect_to inicio_path
         end
