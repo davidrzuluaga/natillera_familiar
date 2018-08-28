@@ -1,9 +1,9 @@
-<%= link_to  "Admin", admin_path if current_user.admin? %>
-<h1>Bienvenido <%=current_user.name%> a Natillera</h1>
-<h2>Sus Ahorros son: <%=@saves.sum(:money)%></h2>
+<h1>Usuario <%=@user.name%></h1>
+<h2>Ahorros: <%=@saves.sum(:money)%></h2>
 <%@saves.each do |save|%>
 <p><%=save.month.strftime("%B")%> <%=save.money%> <%=save.note%></p>
 <%end%>
+
 <h2>Actividades de la Natillera</h2>
 <strong>Ganancias: <%=@activities.sum(:earn)%></strong>
 <%@activities.each do |activity|%>
