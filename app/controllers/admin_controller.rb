@@ -21,13 +21,13 @@ class AdminController < ApplicationController
 
     def updatesave
         if current_user.admin?
-            
             @save = Save.new(save_params)
             if @save.save
-             flash[:success] = "Answer posted successfully!"
-             redirect_to inicio_path
+             flash[:success] = "Añadido Satisfactoriamente"
+             redirect_to user_path(params[:save][:user_id])
             else
-             flash[:danger] = "The answer can't be blank!"
+             flash[:danger] = "Falta un campo por llenar"
+             redirect_to user_path(params[:save][:user_id])
             end
         else
             redirect_to inicio_path
@@ -38,11 +38,11 @@ class AdminController < ApplicationController
         if current_user.admin?
             @activity = Activity.new(activity_params)
             if @activity.save
-             flash[:success] = "Answer posted successfully!"
-             redirect_to inicio_path
+             flash[:success] = "Añadido Satisfactoriamente"
+             redirect_to user_path(params[:activity][:user_id])
             else
-             flash[:danger] = "The answer can't be blank!"
-             binding.pry
+             flash[:danger] = "Falta un campo por llenar"
+             redirect_to user_path(params[:activity][:user_id])
             end
         else
             redirect_to inicio_path

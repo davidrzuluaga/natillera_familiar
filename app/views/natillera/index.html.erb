@@ -1,4 +1,3 @@
-<%= link_to  "Admin", admin_path if current_user.admin? %>
 <h1>Bienvenido <%=current_user.name%> a Natillera</h1>
 <h2>Sus Ahorros son: <%=@saves.sum(:money)%></h2>
 <%@saves.each do |save|%>

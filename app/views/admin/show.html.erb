@@ -6,9 +6,9 @@
 
 <%= form_for @saves.build, url: newsaves_path, html: {method: "post"} do |f| %>
     <%= f.hidden_field :user_id, :integer => @user.id %>
-    <%= f.text_field :month %>
-    <%= f.text_field :money%>
-    <%= f.text_field :note%>
+    <%= f.text_field :month, placeholder:"Fecha" %>
+    <%= f.text_field :money, placeholder:"Dinero"%>
+    <%= f.text_field :note, placeholder:"Nota"%>
     <%= f.submit 'Comment', class: 'btn btn-secondary btn-sm', id:"card" %>
 <% end %>
 
@@ -20,9 +20,9 @@
 
 <%= form_for @activities.build, url: newactivities_path, html: {method: "post"} do |f| %>
     <%= f.hidden_field :user_id, :integer => @user.id %>
-    <%= f.text_field :date%>    
-    <%= f.text_field :activity%>
-    <%= f.text_field :earn%>    
-    <%= f.text_field :note%>
+    <%= f.text_field :date, placeholder:"Fecha"%>    
+    <%= f.text_field :activity, placeholder:"Actividad"%>
+    <%= f.text_field :earn, placeholder:"Ganancia"%>    
+    <%= f.text_field :note, placeholder:"Nota"%>
     <%= f.submit 'Comment', class: 'btn btn-secondary btn-sm', id:"card" %>
 <% end %>
