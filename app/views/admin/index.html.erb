@@ -1,7 +1,15 @@
-<h1>Administrador <%=current_user.name%> Bienvenido a Natillera</h1>
-<h3>Selecciona un usuario para comenzar</h3>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
 
-<%@users.each do |user|%>
-<p> <%= link_to user.name, user_path(user.id) %> </p>
-<%end%>
+        <h1>Administrador: <%=current_user.name%>, Bienvenido a Natillera</h1>
+        <div class="offset-md-2">
+
+            <h3>Selecciona un usuario para comenzar</h3>
+
+            <%@users.each do |user|%>
+            <p> <%= link_to user.name, user_path(user.id) %> </p>
+            <%end%>
+        </div>
+    </div>
+</div>
 
