@@ -2,14 +2,27 @@
     <div class="col-md-8 offset-md-2">
 
         <h1>Administrador: <%=current_user.name%>, Bienvenido a Natillera</h1>
-        <div class="offset-md-2">
-            <p>Ahorro de todos los usuarios: <%=number_to_currency(@ahorrototal, :unit => "$")%></p>
-            <p>Beneficio de todas las actividades: <%=number_to_currency(@beneficiototal, :unit => "$")%></p>
-            <h3>Selecciona un usuario para comenzar</h3>
+                <p>Ahorro de todos los usuarios: <%=number_to_currency(@ahorrototal, :unit => "$")%> - Beneficio de todas las actividades: <%=number_to_currency(@beneficiototal, :unit => "$")%></p>
+        <div class="row">        
+            <div class="col-md-5">
+                <h4>Selecciona un usuario</h4>
 
-            <%@users.each do |user|%>
-            <p> <%= link_to user.name, user_path(user.id) %> </p>
-            <%end%>
+                <%@users.each do |user|%>
+                <p> <%= link_to user.name, user_path(user.id) %> </p>
+                <%end%>
+            </div>
+            <div class="col-md-7">
+                <h4>Actividades</h4>
+                
+                <%= render 'layouts/activitylist' %>
+            
+            <%= form_for @activitylist.build, url: new_activitylist_path, html: {method: "post"} do |f| %>
+                <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
+                <%= f.text_field :name, placeholder:"Actividad", size: 10%>
+                <%= f.text_field :person, placeholder:"Responsable", size: 10%>
+                <%= f.submit 'Crear', class: 'btn btn-secondary btn-sm', id:"card" %>
+            <% end %>
+            </div>
         </div>
     </div>
 </div>

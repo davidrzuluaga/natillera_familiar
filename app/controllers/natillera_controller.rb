@@ -4,6 +4,7 @@ class NatilleraController < ApplicationController
   def index
     @saves = Save.where(user: current_user)
     @activities = Activity.where(user: current_user)
+    @activitylist = Activitylist.all
   end
 
 end

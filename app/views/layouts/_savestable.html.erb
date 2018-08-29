@@ -4,16 +4,14 @@
       <th scope="col">Fecha</th>
       <th scope="col">Dinero</th>
       <th scope="col">Notas</th>
-      <%= '<th scope="col">Admin</th>'.html_safe if user_signed_in? && current_user.admin?%>
     </tr>
   </thead>
   <tbody>
 <%@saves.each do |save|%>
     <tr>
-        <th><%=I18n.l save.month, :format => "%B %d/%Y"%> </th>
+        <th><%= link_to "&#128465;".html_safe, savedelete_path(save), method: :delete, data: { confirm: "¿Eliminar?" } if user_signed_in? && current_user.admin?%> <%=I18n.l save.month, :format => "%B %d/%Y"%> </th>
         <td><%=number_to_currency(save.money, :unit => "$")%></td>
         <td><%=save.note%></td>
-        <td><%= link_to "Eliminar &#128465;</td>".html_safe, savedelete_path(save), method: :delete, data: { confirm: "¿Eliminar?" } if user_signed_in? && current_user.admin?%>
     </tr>
     <%end%>
   </tbody>

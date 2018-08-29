@@ -6,6 +6,7 @@ class AdminController < ApplicationController
             @users = User.where(published: true)
             @ahorrototal = Save.sum(:money)
             @beneficiototal = Activity.sum(:earn)
+            @activitylist = Activitylist.all
         else
             redirect_to inicio_path
         end
@@ -16,6 +17,7 @@ class AdminController < ApplicationController
             @user = User.find(params[:id])
             @saves = Save.where(user: params[:id])
             @activities = Activity.where(user: params[:id])
+            @activitieslist = Activitylist.all.map { |act| [act.name]}
         else
             redirect_to inicio_path
         end    
@@ -72,6 +74,33 @@ class AdminController < ApplicationController
             redirect_to inicio_path
         end    
     end
+
+    def createactivitylist
+        if current_user.admin?
+            @activitylist = Activitylist.new(activity_list_params)
+            if @activitylist.save
+             flash[:success] = "Añadido Satisfactoriamente"
+             redirect_to admin_path
+            else
+             flash[:danger] = "Falta uno o varios campos por llenar"
+             redirect_to admin_path
+            end
+        else
+            redirect_to inicio_path
+        end    
+    end
+
+    def destroyactivitylist
+        if current_user.admin?
+            @activitylist = Activitylist.find(params[:id])
+            @activitylist.destroy
+            flash[:success] = "Eliminado"
+            redirect_to admin_path
+        else
+            redirect_to inicio_path
+        end    
+    end
+
 private
 
     def save_params
@@ -82,4 +111,7 @@ private
         params.require(:activity).permit(:date, :earn, :activity, :note, :user_id)
     end
 
+    def activity_list_params
+        params.require(:activitylist).permit(:date, :person, :name)
+    end
 end

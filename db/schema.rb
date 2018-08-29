@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_190605) do
+ActiveRecord::Schema.define(version: 2018_08_29_044444) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "user_id"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 2018_08_27_190605) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_activities_on_user_id"
+  end
+
+  create_table "activitylists", force: :cascade do |t|
+    t.string "name"
+    t.string "person"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "saves", force: :cascade do |t|
@@ -38,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_190605) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.boolean "admin", default: false
+    t.boolean "published", default: true
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

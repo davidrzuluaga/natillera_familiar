@@ -1,8 +1,10 @@
 <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="offset-md-4">
+        <h1>Bienvenido <%=current_user.name%> a Natillera</h1>
+    </div>    
+    <div class="col-md-6 offset-md-1">
         <div class="thing">
 
-            <h1>Bienvenido <%=current_user.name%> a Natillera</h1>
             <h2>Sus Ahorros han sido: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></h2>
 
             <%=render 'layouts/savestable'%>
@@ -17,4 +19,8 @@
         </div>
 
     </div>
+    <div class="col-md-5">
+        <h4>Actividades</h4>
+        <%= render 'layouts/activitylist' %>
+    </div>    
 </div>
