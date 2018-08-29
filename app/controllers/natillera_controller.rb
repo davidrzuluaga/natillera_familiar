@@ -2,9 +2,9 @@ class NatilleraController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @saves = Save.where(user: current_user)
-    @activities = Activity.where(user: current_user)
-    @activitylist = Activitylist.all
+    @saves = Save.where(user: current_user).order("month ASC")
+    @activities = Activity.where(user: current_user).order("date ASC")
+    @activitylist = Activitylist.order("date ASC")
   end
 
 end

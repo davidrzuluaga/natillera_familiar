@@ -3,10 +3,10 @@ class AdminController < ApplicationController
 
     def index
         if current_user.admin?
-            @users = User.where(published: true)
+            @users = User.where(published: true).order("name ASC")
             @ahorrototal = Save.sum(:money)
             @beneficiototal = Activity.sum(:earn)
-            @activitylist = Activitylist.all
+            @activitylist = Activitylist.order("date ASC")
         else
             redirect_to inicio_path
         end
@@ -15,8 +15,8 @@ class AdminController < ApplicationController
     def show
         if current_user.admin?
             @user = User.find(params[:id])
-            @saves = Save.where(user: params[:id])
-            @activities = Activity.where(user: params[:id])
+            @saves = Save.where(user: params[:id]).order("month ASC")
+            @activities = Activity.where(user: params[:id]).order("date ASC")
             @activitieslist = Activitylist.all.map { |act| [act.name]}
         else
             redirect_to inicio_path
