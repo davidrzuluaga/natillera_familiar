@@ -8,7 +8,7 @@
               <% end %>
             </div>
 
-            <h1>Usuario <%=@user.name%></h1>
+            <h1>Usuario <%=@user.name.nil? ? @user.email : @user.name%></h1>
             <h2>Ahorros: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></h2>
 
             <%=render 'layouts/savestable'%>
