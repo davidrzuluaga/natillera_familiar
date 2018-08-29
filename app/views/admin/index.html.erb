@@ -12,10 +12,10 @@
                 <%end%>
             </div>
             <div class="col-md-7">
-                <h4>Actividades</h4>
                 
                 <%= render 'layouts/activitylist' %>
             
+            <p>Crear Actividad</p>
             <%= form_for @activitylist.build, url: new_activitylist_path, html: {method: "post"} do |f| %>
                 <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
                 <%= f.text_field :name, placeholder:"Actividad", size: 10%>

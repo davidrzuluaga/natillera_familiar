@@ -1,26 +1,26 @@
 <div class="row">
-    <div class="offset-md-4">
+    <div class="offset-md-1">
         <h1>Bienvenido <%=current_user.name%> a Natillera</h1>
     </div>    
     <div class="col-md-6 offset-md-1">
         <div class="thing">
 
-            <h2>Sus Ahorros han sido: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></h2>
+            <h4>Ahorros</h4>
+            <strong>Sus ahorros han sido: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></strong>
 
             <%=render 'layouts/savestable'%>
         </div>
         
         <div class="thing">
 
-            <h2>Actividades de la Natillera</h2>
-            <strong>Ganancias: <%=number_to_currency(@activities.sum(:earn), :unit => "$")%></strong>
+            <h4>Actividades de la Natillera</h4>
+            <strong>Sus ganancias: <%=number_to_currency(@activities.sum(:earn), :unit => "$")%></strong>
 
             <%=render 'layouts/activitytable'%>
         </div>
 
     </div>
     <div class="col-md-5">
-        <h4>Actividades</h4>
         <%= render 'layouts/activitylist' %>
     </div>    
 </div>
