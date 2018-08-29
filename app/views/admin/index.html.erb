@@ -8,7 +8,7 @@
                 <h4>Selecciona un usuario</h4>
 
                 <%@users.each do |user|%>
-                <p> <%= link_to user.name, user_path(user.id) %> </p>
+                <p> <%= link_to (user.name.nil? ? user.email : user.name), user_path(user.id) %> </p>
                 <%end%>
             </div>
             <div class="col-md-7">
