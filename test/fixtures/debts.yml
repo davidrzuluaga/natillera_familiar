@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  money: 9.99
+  date: 2018-09-08
+  note: MyString
+
+two:
+  user: two
+  money: 9.99
+  date: 2018-09-08
+  note: MyString

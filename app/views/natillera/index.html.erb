@@ -21,6 +21,12 @@
             <%=render 'layouts/activitytable'%>
         </div>
 
+    <% if @debt.count > 0 %>
+        <div class="thing">
+            <%=render 'layouts/debttable'%>
+        </div>
+    <% end %>
+
     </div>
     <div class="col-md-5">
         <%= render 'layouts/activitylist' %>
