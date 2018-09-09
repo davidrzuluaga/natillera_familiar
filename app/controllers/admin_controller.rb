@@ -6,18 +6,46 @@ class AdminController < ApplicationController
             @users = User.where(published: true).order("name ASC")
             @ahorrototal = Save.sum(:money)
             @beneficiototal = Activity.sum(:earn)
+            @deudatotal = Debt.sum(:money)
             @activitylist = Activitylist.order("date ASC")
         else
             redirect_to inicio_path
         end
     end
-
+    
     def show
         if current_user.admin?
             @user = User.find(params[:id])
             @saves = Save.where(user: params[:id]).order("month ASC")
             @activities = Activity.where(user: params[:id]).order("date ASC")
             @activitieslist = Activitylist.all.map { |act| [act.name]}
+            @debt = Debt.where(user: params[:id]).order("date ASC")
+        else
+            redirect_to inicio_path
+        end    
+    end
+
+    def updatedebt
+        if current_user.admin?
+            @debt = Debt.new(debt_params)
+            if @debt.save
+             flash[:success] = "Añadido Satisfactoriamente"
+             redirect_to user_path(params[:debt][:user_id])
+            else
+             flash[:danger] = "Falta uno o varios campos por llenar"
+             redirect_to user_path(params[:debt][:user_id])
+            end
+        else
+            redirect_to inicio_path
+        end   
+    end
+
+    def destroydebt
+        if current_user.admin?
+            @debt = Debt.find(params[:id])
+            @debt.destroy
+            flash[:success] = "Eliminado"
+            redirect_to user_path(@debt.user_id)                
         else
             redirect_to inicio_path
         end    
@@ -102,6 +130,10 @@ class AdminController < ApplicationController
     end
 
 private
+
+    def debt_params
+        params.require(:debt).permit(:date, :money, :note, :user_id)
+    end
 
     def save_params
         params.require(:save).permit(:month, :money, :note, :user_id)
