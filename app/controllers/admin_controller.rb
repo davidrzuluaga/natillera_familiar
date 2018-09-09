@@ -6,6 +6,7 @@ class AdminController < ApplicationController
             @users = User.where(published: true).order("name ASC")
             @ahorrototal = Save.sum(:money)
             @beneficiototal = Activity.sum(:earn)
+            @deudatotal = Debt.sum(:money)
             @activitylist = Activitylist.order("date ASC")
         else
             redirect_to inicio_path

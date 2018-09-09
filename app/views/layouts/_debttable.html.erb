@@ -11,7 +11,7 @@
         <%@debt.each do |debt|%>
         <tr>
           <th><%= link_to "&#128465;".html_safe, debtdelete_path(debt), method: :delete, data: { confirm: "¿Eliminar?" } if user_signed_in? && current_user.admin?%><%=I18n.l debt.date, :format => "%B %d/%Y"%></th>
-          <td><%= number_to_currency(debt.money, :unit => "$")%></td>
+          <td id="debtcolor"><%= number_to_currency(debt.money, :unit => "$")%></td>
           <td><%= debt.note %></td>
         </tr>
         <%end%>
