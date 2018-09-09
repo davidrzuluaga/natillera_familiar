@@ -9,8 +9,8 @@
 
             <h4>Ahorros</h4>
             <strong>Sus ahorros han sido: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></strong>
-
             <%=render 'layouts/savestable'%>
+            <%= "<h5>Usted no tiene ahorros en la natillera</h5>".html_safe if (@saves.count == 0)%>
         </div>
         
         <div class="thing">
@@ -19,11 +19,13 @@
             <strong>Sus ganancias: <%=number_to_currency(@activities.sum(:earn), :unit => "$")%></strong>
 
             <%=render 'layouts/activitytable'%>
+            <%= "<h5>Usted no tiene ganancias por actividades</h5>".html_safe if (@activities.count == 0)%>
         </div>
 
     <% if @debt.count > 0 %>
         <div class="thing">
             <%=render 'layouts/debttable'%>
+            <%= "<h5>Usted no tiene deudas con la natillera</h5>".html_safe if (@debt.count == 0)%>
         </div>
     <% end %>
 
