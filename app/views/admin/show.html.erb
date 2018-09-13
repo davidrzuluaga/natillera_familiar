@@ -13,14 +13,9 @@
 
             <%=render 'layouts/savestable'%>
 
-            <p>Agregar un ahorro a este socio &#x2193;</p>
-            <%= form_for @saves.build, url: newsaves_path, html: {method: "post"} do |f| %>
-                <%= f.hidden_field :user_id, :integer => @user.id %>
-                <%= f.date_select :month, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
-                <%= f.text_field :money, placeholder:"Dinero"%>
-                <%= f.text_field :note, placeholder:"Nota"%>
-                <%= f.submit 'Subir', class: 'btn btn-secondary btn-sm', id:"card" %>
-            <% end %>
+            <div class="savesform" > <!--style="display: none;"-->
+                <%= link_to "Nuevo", newsave_path, remote: true, class: "btn btn-primary" %>
+            </div>
         </div>
 
         <div class="thing">
@@ -28,16 +23,18 @@
             <strong>Ganancias: <%=number_to_currency(@activities.sum(:earn), :unit => "$")%></strong>
     
             <%=render 'layouts/activitytable'%>    
-
-            <p>Agregar una ganancia a este socio &#x2193;</p>
-            <%= form_for @activities.build, url: newactivities_path, html: {method: "post"}, class:"form-row align-items-center" do |f| %>
-                <%= f.hidden_field :user_id, :integer => @user.id %>
+            <%=@user.id%>
+            <div class="activityform" > <!--style="display: none;"-->
+            <%= form_for @activity, class:"form-row align-items-center" do |f| %>
+                <%= f.text_field :user_id, :integer => @user.id %>
                 <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%> -
                 <%= f.select :activity, options_for_select(@activitieslist), class:"custom-select mr-sm-2", id:"inlineFormCustomSelect" %> -
                 <%= f.text_field :earn, placeholder:"Ganancia"%>    
                 <%= f.text_field :note, placeholder:"Nota"%>
                 <%= f.submit 'Subir', class: 'btn btn-secondary btn-sm', id:"card" %>
             <% end %>
+            </div>
+
         </div>
     </div>
 </div>

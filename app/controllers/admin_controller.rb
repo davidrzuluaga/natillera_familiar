@@ -11,13 +11,14 @@ class AdminController < ApplicationController
             redirect_to inicio_path
         end
     end
-
+    
     def show
         if current_user.admin?
             @user = User.find(params[:id])
             @saves = Save.where(user: params[:id]).order("month ASC")
             @activities = Activity.where(user: params[:id]).order("date ASC")
             @activitieslist = Activitylist.all.map { |act| [act.name]}
+            @activity = Activity.new
         else
             redirect_to inicio_path
         end    
@@ -28,10 +29,11 @@ class AdminController < ApplicationController
             @save = Save.new(save_params)
             if @save.save
              flash[:success] = "Añadido Satisfactoriamente"
-             redirect_to user_path(params[:save][:user_id])
+             redirect_to inicio_path#user_path(params[:save][:user_id])
             else
              flash[:danger] = "Falta uno o varios campos por llenar"
-             redirect_to user_path(params[:save][:user_id])
+             
+             redirect_to inicio_path#user_path(params[:save][:user_id])
             end
         else
             redirect_to inicio_path
@@ -43,10 +45,11 @@ class AdminController < ApplicationController
             @activity = Activity.new(activity_params)
             if @activity.save
              flash[:success] = "Añadido Satisfactoriamente"
-             redirect_to user_path(params[:activity][:user_id])
+             redirect_to inicio_path # user_path(params[:activity][:user_id])
             else
              flash[:danger] = "Falta uno o varios campos por llenar"
-             redirect_to user_path(params[:activity][:user_id])
+             
+             redirect_to inicio_path # user_path(params[:activity][:user_id])
             end
         else
             redirect_to inicio_path
@@ -62,6 +65,22 @@ class AdminController < ApplicationController
         else
             redirect_to inicio_path
         end    
+    end
+
+    def modifyactivity
+        @activity = Activity.find(params[:id])
+    end
+
+    def modifysave
+        @save = Save.find(params[:id])
+    end
+
+    def updatemodsave
+        @save = Save.update(params[:id], save_params)
+    end
+
+    def newsave
+        @save = Save.new
     end
 
     def destroysave

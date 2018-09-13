@@ -8,10 +8,10 @@
   </thead>
   <tbody>
 <%@saves.each do |save|%>
-    <tr>
-        <th><%= link_to "&#128465;".html_safe, savedelete_path(save), method: :delete, data: { confirm: "¿Eliminar?" } if user_signed_in? && current_user.admin?%> <%=I18n.l save.month, :format => "%B %d/%Y"%> </th>
-        <td><%=number_to_currency(save.money, :unit => "$")%></td>
-        <td><%=save.note%></td>
+    <tr id="<%=save.id%>">    
+      <th><%= link_to "&#9998;".html_safe, save_path(save), method: :get, remote: true if user_signed_in? && current_user.admin?%> <%= link_to "&#128465;".html_safe, savedelete_path(save), method: :delete, data: { confirm: "¿Eliminar?" } if user_signed_in? && current_user.admin?%> <%=I18n.l save.month, :format => "%B %d/%Y"%> </th>
+      <td><%=number_to_currency(save.money, :unit => "$")%></td>
+      <td><%=save.note%></td>
     </tr>
     <%end%>
   </tbody>
