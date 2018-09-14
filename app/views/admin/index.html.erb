@@ -15,13 +15,18 @@
                 
                 <%= render 'layouts/activitylist' %>
             
-            <p>Crear Actividad</p>
-            <%= form_for @activitylist.build, url: new_activitylist_path, html: {method: "post"} do |f| %>
-                <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
-                <%= f.text_field :name, placeholder:"Actividad", size: 10%>
-                <%= f.text_field :person, placeholder:"Responsable", size: 10%>
-                <%= f.submit 'Crear', class: 'btn btn-secondary btn-sm', id:"card" %>
-            <% end %>
+                <a href="#"  class = "btn btn-primary" id="showformactlist">Crear Actividad</a>
+    
+                <div class="activitylistform" style="visibility:hidden">
+                    <p>Crear Actividad</p>
+                    <%= form_for @activitylist.build, url: new_activitylist_path, html: {method: "post"} do |f| %>
+                        <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
+                        <%= f.text_field :name, placeholder:"Actividad", size: 10%>
+                        <%= f.text_field :person, placeholder:"Responsable", size: 10%>
+                        <%= f.submit 'Crear', class: 'btn btn-secondary btn-sm', id:"card" %>
+                    <% end %>
+                </div>
+
             </div>
         </div>
     </div>

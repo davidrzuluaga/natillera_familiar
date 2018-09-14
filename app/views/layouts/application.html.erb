@@ -11,5 +11,10 @@
   <%= render 'layouts/navbar'%>
   <body>
     <%= yield %>
+    <script>
+      $('#showformactlist').on('click', function(){
+          $('.activitylistform').show();
+      })
+      </script>
   </body>
 </html>
