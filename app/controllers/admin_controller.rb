@@ -25,19 +25,33 @@ class AdminController < ApplicationController
         end    
     end
 
-    def updatedebt
+    def newdebt
+        @debt = Debt.new
+    end
+
+    def createdebt
         if current_user.admin?
             @debt = Debt.new(debt_params)
+            @debt.user = User.find(params[:id])
             if @debt.save
              flash[:success] = "Añadido Satisfactoriamente"
-             redirect_to user_path(params[:debt][:user_id])
+             redirect_to user_path(params[:id])
             else
              flash[:danger] = "Falta uno o varios campos por llenar"
-             redirect_to user_path(params[:debt][:user_id])
+             redirect_to user_path(params[:id])
             end
         else
             redirect_to inicio_path
         end   
+    end
+
+    def modifydebt
+        @debt = Debt.find(params[:id])
+    end
+    
+    def updatedebt
+        @debt = Debt.update(params[:id], debt_params)
+        redirect_to user_path(params[:debt][:user_id])
     end
 
     def destroydebt

@@ -13,7 +13,7 @@
 
             <%=render 'layouts/savestable'%>
 
-            <div class="savesform" > <!--style="display: none;"-->
+            <div class="savesform" > 
                 <%= link_to "Nuevo Ahorro", newsave_path, remote: true, class: "btn btn-primary" %>
             </div>
         </div>
@@ -24,22 +24,16 @@
     
             <%=render 'layouts/activitytable'%>    
             
-            <div class="activityform" > <!--style="display: none;"-->
-                <%= link_to "Nueva Actividad", newactivity_path, remote: true, class: "btn btn-primary" %>
+            <div class="activityform" > 
+                <%= link_to "Nueva Ganancia de Actividad", newactivity_path, remote: true, class: "btn btn-primary" %>
             </div>
 
         </div>
         <div class="thing">
             <%=render 'layouts/debttable'%>    
-
-            <p>Agregar una deuda a este socio &#x2193;</p>
-            <%= form_for @debt.build, url: newdebt_path, html: {method: "post"}, class:"form-row align-items-center" do |f| %>
-                <%= f.hidden_field :user_id, :integer => @user.id %>
-                <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%> -
-                <%= f.text_field :money, placeholder:"Cantidad"%>    
-                <%= f.text_field :note, placeholder:"Concepto"%>
-                <%= f.submit 'Subir', class: 'btn btn-secondary btn-sm', id:"card" %>
-            <% end %>
+            <div class="debtform" > 
+                <%= link_to "Nueva Deuda", newdebt_path, remote: true, class: "btn btn-primary" %>
+            </div>        
         </div>
     </div>
 </div>
