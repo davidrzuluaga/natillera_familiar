@@ -27,3 +27,4 @@ Rails.application.routes.draw do
   get 'admin/debt/:id', to: 'admin#modifydebt', as: 'debt'
   patch 'admin/debt/:id', to: 'admin#updatedebt', as: 'updatedebt'
 end
+
