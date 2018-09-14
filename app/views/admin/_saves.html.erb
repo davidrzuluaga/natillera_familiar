@@ -1,6 +1,6 @@
 <%= title %>
 <%= form_for @save, remote: true do |f| %>
-    <%= f.text_field :user_id %>
+    <%= f.hidden_field :user_id%>
     <%= f.date_select :month, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
     <%= f.text_field :money, placeholder:"Dinero"%>
     <%= f.text_field :note, placeholder:"Nota"%>

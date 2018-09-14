@@ -10,7 +10,7 @@
   <tbody>
       <%@activities.each do |activity|%>
       <tr id="<%=activity.id%>">
-        <th><%= link_to "&#9998;".html_safe, modifyactivity_path(activity), remote: true if user_signed_in? && current_user.admin?%> <%= link_to "&#128465;".html_safe, activitydelete_path(activity), method: :delete, data: { confirm: "¿Eliminar?" } if user_signed_in? && current_user.admin?%> <%=I18n.l activity.date, :format => "%B %d/%Y"%></th>
+        <th><%= link_to "&#9998;".html_safe, activity_path(activity), remote: true if user_signed_in? && current_user.admin?%> <%= link_to "&#128465;".html_safe, activitydelete_path(activity), method: :delete, data: { confirm: "¿Eliminar?" } if user_signed_in? && current_user.admin?%> <%=I18n.l activity.date, :format => "%B %d/%Y"%></th>
         <td><%=activity.activity%></td>
         <td><%=number_to_currency(activity.earn, :unit => "$")%></td>
         <td><%=activity.note%></td>

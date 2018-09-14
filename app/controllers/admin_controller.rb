@@ -17,43 +17,80 @@ class AdminController < ApplicationController
             @user = User.find(params[:id])
             @saves = Save.where(user: params[:id]).order("month ASC")
             @activities = Activity.where(user: params[:id]).order("date ASC")
-            @activitieslist = Activitylist.all.map { |act| [act.name]}
-            @activity = Activity.new
         else
             redirect_to inicio_path
         end    
     end
+    
+    def newsave
+        @save = Save.new
+    end
 
-    def updatesave
+    def createsave
         if current_user.admin?
             @save = Save.new(save_params)
+            @save.user = User.find(params[:id])
             if @save.save
              flash[:success] = "Añadido Satisfactoriamente"
-             redirect_to inicio_path#user_path(params[:save][:user_id])
+             redirect_to user_path(params[:id])
             else
              flash[:danger] = "Falta uno o varios campos por llenar"
              
-             redirect_to inicio_path#user_path(params[:save][:user_id])
+             redirect_to user_path(params[:id])
             end
         else
             redirect_to inicio_path
         end    
     end
+    
+    def modifysave
+        @save = Save.find(params[:id])
+    end
+    
+    def updatesave
+        @save = Save.update(params[:id], save_params)
+        redirect_to user_path(params[:save][:user_id])
+    end
+    
+    def destroysave
+        if current_user.admin?
+            @save = Save.find(params[:id])
+            @save.destroy
+            flash[:success] = "Eliminado"
+            redirect_to user_path(@save.user_id)
+        else
+            redirect_to inicio_path
+        end    
+    end
 
-    def updateactivity
+    def newactivity
+        @activity = Activity.new
+    end
+   
+    def createactivity
         if current_user.admin?
             @activity = Activity.new(activity_params)
+            @activity.user = User.find(params[:id])
             if @activity.save
              flash[:success] = "Añadido Satisfactoriamente"
-             redirect_to inicio_path # user_path(params[:activity][:user_id])
+             binding.pry
+             redirect_to user_path(params[:user_id])
             else
              flash[:danger] = "Falta uno o varios campos por llenar"
-             
-             redirect_to inicio_path # user_path(params[:activity][:user_id])
+             redirect_to user_path(params[:user_id])
             end
         else
             redirect_to inicio_path
         end    
+    end
+    
+    def modifyactivity
+        @activity = Activity.find(params[:id])
+    end
+    
+    def updateactivity
+        @activity = Activity.update(params[:id], activity_params)
+        redirect_to user_path(params[:activity][:user_id])
     end
 
     def destroyactivity
@@ -66,34 +103,7 @@ class AdminController < ApplicationController
             redirect_to inicio_path
         end    
     end
-
-    def modifyactivity
-        @activity = Activity.find(params[:id])
-    end
-
-    def modifysave
-        @save = Save.find(params[:id])
-    end
-
-    def updatemodsave
-        @save = Save.update(params[:id], save_params)
-    end
-
-    def newsave
-        @save = Save.new
-    end
-
-    def destroysave
-        if current_user.admin?
-            @save = Save.find(params[:id])
-            @save.destroy
-            flash[:success] = "Eliminado"
-            redirect_to user_path(@save.user_id)
-        else
-            redirect_to inicio_path
-        end    
-    end
-
+    
     def createactivitylist
         if current_user.admin?
             @activitylist = Activitylist.new(activity_list_params)
