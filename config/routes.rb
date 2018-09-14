@@ -20,4 +20,8 @@ Rails.application.routes.draw do
   
   post 'admin/activitylist', to: 'admin#createactivitylist' , as: 'new_activitylist'
   delete 'admin/activitylist/:id', to: 'admin#destroyactivitylist', as: 'activitylistdelete'
+
+  post 'admin/debt', to: 'admin#updatedebt' , as: 'newdebt'
+  delete 'admin/debt/:id', to: 'admin#destroydebt', as: 'debtdelete'
 end
+
