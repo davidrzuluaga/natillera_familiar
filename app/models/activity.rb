@@ -14,5 +14,6 @@
 
 class Activity < ApplicationRecord
   belongs_to :user
-  validates :earn, :activity, :date, presence: true
+  belongs_to :activitylist
+  validates :earn, :date, presence: true
 end

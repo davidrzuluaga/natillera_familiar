@@ -1,36 +1,42 @@
-<div class="row">
-    <div class="offset-md-1">
+<div class="landing">
+    <div id="welcome" class= "row">
         <h1>Bienvenido <%=current_user.name%> a Natillera</h1>
     </div>    
-</div>    
-<div class="row">
-    <div class="col-md-6 offset-md-1">
-        <div class="thing">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="thing">
+                <div class="insidething">
+                    <h4>Ahorros</h4>
+                    <strong>Sus ahorros han sido: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></strong>
+                    <%=render 'layouts/savestable'%>
+                    <%= "<h5>Usted no tiene ahorros en la natillera</h5>".html_safe if (@saves.count == 0)%>
+                </div>        
+            </div>
 
-            <h4>Ahorros</h4>
-            <strong>Sus ahorros han sido: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></strong>
-            <%=render 'layouts/savestable'%>
-            <%= "<h5>Usted no tiene ahorros en la natillera</h5>".html_safe if (@saves.count == 0)%>
+            <div class="thing">
+                <div class="insidething">
+                    <h4>Actividades de la Natillera</h4>
+                    <strong>Sus ganancias: <%=number_to_currency(@activities.sum(:earn), :unit => "$")%></strong>
+
+                    <%=render 'layouts/activitytable'%>
+                    <%= "<h5>Usted no tiene ganancias por actividades</h5>".html_safe if (@activities.count == 0)%>
+                </div>
+            </div>
+
+        <% if @debt.count > 0 %>
+            <div class="thing">
+                <div class="insidething">
+                    <%=render 'layouts/debttable'%>
+                    <%= "<h5>Usted no tiene deudas con la natillera</h5>".html_safe if (@debt.count == 0)%>
+                </div>
+            </div>
+        <% end %>
+
         </div>
-        
-        <div class="thing">
-
-            <h4>Actividades de la Natillera</h4>
-            <strong>Sus ganancias: <%=number_to_currency(@activities.sum(:earn), :unit => "$")%></strong>
-
-            <%=render 'layouts/activitytable'%>
-            <%= "<h5>Usted no tiene ganancias por actividades</h5>".html_safe if (@activities.count == 0)%>
-        </div>
-
-    <% if @debt.count > 0 %>
-        <div class="thing">
-            <%=render 'layouts/debttable'%>
-            <%= "<h5>Usted no tiene deudas con la natillera</h5>".html_safe if (@debt.count == 0)%>
-        </div>
-    <% end %>
-
+        <div class="thing col-md-5">
+            <div class="insidething">
+                <%= render 'layouts/activitylist' %>
+            </div>
+        </div>    
     </div>
-    <div class="col-md-5">
-        <%= render 'layouts/activitylist' %>
-    </div>    
-</div>
+</div>    

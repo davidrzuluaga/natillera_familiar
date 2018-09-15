@@ -2,7 +2,7 @@
 <%= form_for @activity, remote: true, class:"form-row align-items-center" do |f| %>
     <%= f.hidden_field :user_id%>
     <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%> -
-    <%= f.select :activity, options_for_select(Activitylist.all.map { |act| [act.name]}), class:"custom-select mr-sm-2", id:"inlineFormCustomSelect" %> -
+    <%= f.collection_select(:activitylist_id, Activitylist.all, :id, :name) %> -
     <%= f.text_field :earn, placeholder:"Ganancia"%>    
     <%= f.text_field :note, placeholder:"Nota"%>
     <%= f.submit 'Subir', class: 'btn btn-secondary btn-sm', id:"card" %>

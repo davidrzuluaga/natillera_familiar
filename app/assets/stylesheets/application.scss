@@ -1,9 +1,28 @@
 @import "bootstrap";
-.thing {
+
+body { 
+    background-color: #f5f5f2;
+}
+#welcome {
     margin-top: 20px;
-    margin-bottom: 30px;
 }
 .row {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 #debtcolor {color: red;}
+.landing {
+    margin-left: 60px;
+}
+
+.thing {
+    margin-top: 20px;
+    background-color: white;
+    border: 1px solid #ccc; 
+    margin-left: 20px;
+    border-radius: 10px;
+}
+
+.insidething {
+    margin: 18px;
+
+}

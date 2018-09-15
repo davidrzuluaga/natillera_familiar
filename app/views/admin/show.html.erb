@@ -1,38 +1,44 @@
 <div class="row">
     <div class="col-md-8 offset-md-2">
-
+        
+        <h1>Usuario <%=@user.name.nil? ? @user.email : @user.name%></h1>
+        
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key != "success" ? "success" : key %>"><%= value %></div>
+        <% end %>
+        
         <div class="thing">
             <div class="container">
-              <% flash.each do |key, value| %>
-                <div class="alert alert-<%= key == "" ? "success" : key %>"><%= value %></div>
-              <% end %>
-            </div>
+                <div class="insidething">          
+                    <h2>Ahorros: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></h2>
 
-            <h1>Usuario <%=@user.name.nil? ? @user.email : @user.name%></h1>
-            <h2>Ahorros: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></h2>
+                    <%=render 'layouts/savestable'%>
 
-            <%=render 'layouts/savestable'%>
-
-            <div class="savesform" > 
-                <%= link_to "Nuevo Ahorro", newsave_path, remote: true, class: "btn btn-primary" %>
+                    <div class="savesform" > 
+                        <%= link_to "Nuevo Ahorro", newsave_path, remote: true, class: "btn btn-primary" %>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="thing">
-            <h2>Actividades de la Natillera</h2>
-            <strong>Ganancias: <%=number_to_currency(@activities.sum(:earn), :unit => "$")%></strong>
-    
-            <%=render 'layouts/activitytable'%>    
-            
-            <div class="activityform" > 
-                <%= link_to "Nueva Ganancia de Actividad", newactivity_path, remote: true, class: "btn btn-primary" %>
-            </div>
+            <div class="insidething">          
+                <h2>Actividades de la Natillera</h2>
+                <strong>Ganancias: <%=number_to_currency(@activities.sum(:earn), :unit => "$")%></strong>
 
+                <%=render 'layouts/activitytable'%>    
+
+                <div class="activityform" > 
+                    <%= link_to "Nueva Ganancia de Actividad", newactivity_path, remote: true, class: "btn btn-primary" %>
+                </div>
+            </div>
         </div>
         <div class="thing">
-            <%=render 'layouts/debttable'%>    
-            <div class="debtform" > 
-                <%= link_to "Nueva Deuda", newdebt_path, remote: true, class: "btn btn-primary" %>
+            <div class="insidething">          
+                <%=render 'layouts/debttable'%>    
+                <div class="debtform" > 
+                    <%= link_to "Nueva Deuda", newdebt_path, remote: true, class: "btn btn-primary" %>
+                </div>        
             </div>        
         </div>
     </div>
