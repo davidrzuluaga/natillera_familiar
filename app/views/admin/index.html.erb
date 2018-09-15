@@ -5,26 +5,33 @@
                 <p><strong>Ahorro general:</strong> <%=number_to_currency(@ahorrototal, :unit => "$")%> - <strong>Beneficio total:</strong> <%=number_to_currency(@beneficiototal, :unit => "$")%> - <strong>Deudas totales:</strong> <%=number_to_currency(@deudatotal, :unit => "$")%></p>
         <div class="row">        
             <div class="col-md-5">
-                <h4>Selecciona un usuario</h4>
+                <div class="thing">
+                    <div class="insidething">
+                        <h4>Selecciona un usuario</h4>
 
-                <%@users.each do |user|%>
-                <p> <%= link_to (user.name.nil? ? user.email : user.name), user_path(user.id) %> </p>
-                <%end%>
+                        <%@users.each do |user|%>
+                        <p> <%= link_to (user.name.nil? ? user.email : user.name), user_path(user.id) %> </p>
+                        <%end%>
+                    </div>
+                </div>
             </div>
             <div class="col-md-7">
-                
-                <%= render 'layouts/activitylist' %>
-            
-                <a href="#"  class = "btn btn-primary" id="showformactlist">Crear Actividad</a>
-    
-                <div class="activitylistform" style="visibility:hidden">
-                    <p>Crear Actividad</p>
-                    <%= form_for @activitylist.build, url: new_activitylist_path, html: {method: "post"} do |f| %>
-                        <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
-                        <%= f.text_field :name, placeholder:"Actividad", size: 10%>
-                        <%= f.text_field :person, placeholder:"Responsable", size: 10%>
-                        <%= f.submit 'Crear', class: 'btn btn-secondary btn-sm', id:"card" %>
-                    <% end %>
+                <div class="thing">
+                    <div class="insidething">          
+                        <%= render 'layouts/activitylist' %>
+
+                        <a href="#"  class = "btn btn-primary" id="showformactlist">Crear Actividad</a>
+
+                        <div class="activitylistform" style="visibility:hidden">
+                            <p>Crear Actividad</p>
+                            <%= form_for @activitylist.build, url: new_activitylist_path, html: {method: "post"} do |f| %>
+                                <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
+                                <%= f.text_field :name, placeholder:"Actividad", size: 10%>
+                                <%= f.text_field :person, placeholder:"Responsable", size: 10%>
+                                <%= f.submit 'Crear', class: 'btn btn-secondary btn-sm', id:"card" %>
+                            <% end %>
+                        </div>
+                    </div>
                 </div>
 
             </div>

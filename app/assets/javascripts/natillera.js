@@ -1,3 +1,5 @@
-$('#showformactlist').on('click', function(){
-    $('.activitylistform').show();
+function NatilleraView() {
+    $('td').on('click', function(){
+        $(this).css('color', 'red');
 })
+}

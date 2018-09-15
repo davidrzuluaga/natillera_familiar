@@ -1,5 +1,5 @@
-function adminView() {
-$('#showformactlist').on('click', function(){
-    $('.activitylistform').show();
-})
+function AdminView() {
+    $('td').on('click', function(){
+        $(this).css('color', 'red');
+    })
 }
