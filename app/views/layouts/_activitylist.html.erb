@@ -13,7 +13,7 @@
         <tr>
           <th><%= link_to "&#128465;".html_safe, activitylistdelete_path(act), method: :delete, data: { confirm: "¿Eliminar?" } if user_signed_in? && current_user.admin?%> <%=I18n.l act.date%></th>
           <td><%=act.name%></td>
-          <td><%=number_to_currency(Activity.where(activity: act.name).sum(:earn), :unit => "$")%></td>
+          <td><%=number_to_currency(Activity.where(activitylist_id: act.id).sum(:earn), :unit => "$")%></td>
           <td><%=act.person%></td>
         </tr>
         <%end%>

@@ -18,7 +18,7 @@ class AdminController < ApplicationController
             @user = User.find(params[:id])
             @saves = Save.where(user: params[:id]).order("month ASC")
             @activities = Activity.where(user: params[:id]).order("date ASC")
-            @activitieslist = Activitylist.all.map { |act| [act.name]}
+            @activitieslist = Activitylist.all
             @debt = Debt.where(user: params[:id]).order("date ASC")
         else
             redirect_to inicio_path
@@ -116,11 +116,10 @@ class AdminController < ApplicationController
             @activity.user = User.find(params[:id])
             if @activity.save
              flash[:success] = "Añadido Satisfactoriamente"
-             binding.pry
-             redirect_to user_path(params[:user_id])
+             redirect_to user_path(params[:id])
             else
-             flash[:danger] = "Falta uno o varios campos por llenar"
-             redirect_to user_path(params[:user_id])
+                flash[:danger] = "Falta uno o varios campos por llenar"
+             redirect_to user_path(params[:id])
             end
         else
             redirect_to inicio_path
@@ -184,7 +183,7 @@ private
     end
 
     def activity_params
-        params.require(:activity).permit(:date, :earn, :activity, :note, :user_id)
+        params.require(:activity).permit(:date, :earn, :activity, :note, :user_id, :activitylist_id )
     end
 
     def activity_list_params
