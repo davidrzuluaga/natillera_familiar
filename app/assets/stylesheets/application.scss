@@ -5,24 +5,31 @@ body {
 }
 #welcome {
     margin-top: 20px;
+    margin-left: 10px;
 }
 .row {
     margin-top: 10px;
 }
 #debtcolor {color: red;}
-.landing {
-    margin-left: 60px;
-}
+
 
 .thing {
-    margin-top: 20px;
     background-color: white;
     border: 1px solid #ccc; 
-    margin-left: 20px;
     border-radius: 10px;
+    margin-top: 20px;
 }
 
 .insidething {
     margin: 18px;
+}
+
+@media (min-width: 992px) {
+    .landing {
+        margin-left: 60px;
+    }
+    .thing {
+        margin-left: 20px;
+    }
 
 }

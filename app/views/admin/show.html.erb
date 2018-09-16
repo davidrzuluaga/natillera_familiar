@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-lg-8 offset-lg-2">
         
         <h1>Usuario <%=@user.name.nil? ? @user.email : @user.name%></h1>
         
@@ -8,15 +8,11 @@
         <% end %>
         
         <div class="thing">
-            <div class="container">
-                <div class="insidething">          
-                    <h2>Ahorros: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></h2>
-
-                    <%=render 'layouts/savestable'%>
-
-                    <div class="savesform" > 
-                        <%= link_to "Nuevo Ahorro", newsave_path, remote: true, class: "btn btn-primary" %>
-                    </div>
+            <div class="insidething">          
+                <h2>Ahorros: <%=number_to_currency(@saves.sum(:money), :unit => "$")%></h2>
+                <%=render 'layouts/savestable'%>
+                <div class="savesform" > 
+                    <%= link_to "Nuevo Ahorro", newsave_path, remote: true, class: "btn btn-primary" %>
                 </div>
             </div>
         </div>
