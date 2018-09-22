@@ -1,7 +1,7 @@
 <div class="offset-lg-1"><!-- -->
   
     <h1>Administrador <%=current_user.name%></h1>
-    <p><strong>Ahorro general:</strong> <%=number_to_currency(@ahorrototal, :unit => "$")%> - <strong>Beneficio total:</strong> <%=number_to_currency(@beneficiototal, :unit => "$")%> - <strong>Deudas totales:</strong> <%=number_to_currency(@deudatotal, :unit => "$")%></p>
+    <p><strong>Ahorro general:</strong> <%=number_to_currency(@ahorrototal, :unit => "$")%> + <strong>Beneficio total:</strong> <%=number_to_currency(@beneficiototal, :unit => "$")%> - <strong>Deudas totales:</strong> <%=number_to_currency(@deudatotal, :unit => "$")%> = <strong>Total Efectivo:</strong> <%=number_to_currency(@efectivo, :unit => "$")%></p>
  
         <div class="row">        
             <div class="col-lg-5">

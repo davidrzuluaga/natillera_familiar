@@ -8,6 +8,7 @@ class AdminController < ApplicationController
             @beneficiototal = Activity.sum(:earn)
             @deudatotal = Debt.sum(:money)
             @activitylist = Activitylist.order("date ASC")
+            @efectivo = (@ahorrototal+@beneficiototal-@deudatotal)
         else
             redirect_to inicio_path
         end
