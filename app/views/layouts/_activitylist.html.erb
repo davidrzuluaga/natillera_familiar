@@ -11,7 +11,7 @@
     <tbody>
         <%@activitylist.each do |act|%>
         <tr>
-          <th><%= link_to "&#128465;".html_safe, activitylistdelete_path(act), method: :delete, data: { confirm: "¿Eliminar?" } if user_signed_in? && current_user.admin?%> <%=I18n.l act.date%></th>
+          <th><%= link_to "&#9998;".html_safe, activitylist_path(act), remote: true if user_signed_in? && current_user.admin?%> <%= link_to "&#128465;".html_safe, activitylistdelete_path(act), method: :delete, data: { confirm: "¿Eliminar?" } if user_signed_in? && current_user.admin?%> <%=I18n.l act.date%></th>
           <td><%=act.name%></td>
           <td><%=number_to_currency(Activity.where(activitylist_id: act.id).sum(:earn), :unit => "$")%></td>
           <td><%=act.person%></td>

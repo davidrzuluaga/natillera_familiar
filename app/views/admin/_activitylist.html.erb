@@ -1,0 +1,7 @@
+<%= title %>
+<%= form_for @activitylist do |f| %>
+    <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
+    <%= f.text_field :name, placeholder:"Actividad", size: 10%>
+    <%= f.text_field :person, placeholder:"Responsable", size: 10%>
+    <%= f.submit 'Subir', class: 'btn btn-secondary btn-sm', id:"card" %>
+<% end %>

@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   get 'admin/activity/:id', to: 'admin#modifyactivity', as: 'activity'
   patch 'admin/activity/:id', to: 'admin#updateactivity', as: 'updateactivity'
   
-  post 'admin/activitylist', to: 'admin#createactivitylist' , as: 'new_activitylist'
+  post 'admin/activitylist', to: 'admin#createactivitylist' , as: 'activitylists'
   delete 'admin/activitylist/:id', to: 'admin#destroyactivitylist', as: 'activitylistdelete'
+  get 'admin/activitylist/:id', to: 'admin#modifyactivitylist', as: 'activitylist'
+  patch 'admin/activitylist/:id', to: 'admin#updateactivitylist', as: 'updateactivitylist'
 
   post 'admin/debt/:id', to: 'admin#createdebt' , as: 'debts'
   delete 'admin/debt/:id', to: 'admin#destroydebt', as: 'debtdelete'

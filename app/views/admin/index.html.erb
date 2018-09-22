@@ -3,36 +3,34 @@
     <h1>Administrador <%=current_user.name%></h1>
     <p><strong>Ahorro general:</strong> <%=number_to_currency(@ahorrototal, :unit => "$")%> + <strong>Beneficio total:</strong> <%=number_to_currency(@beneficiototal, :unit => "$")%> - <strong>Deudas totales:</strong> <%=number_to_currency(@deudatotal, :unit => "$")%> = <strong>Total Efectivo:</strong> <%=number_to_currency(@efectivo, :unit => "$")%></p>
  
-        <div class="row">        
-            <div class="col-lg-5">
-                <div class="thing">
-                    <div class="insidething">
-                        <h4>Selecciona un usuario</h4>
-
-                        <%@users.each do |user|%>
-                        <p> <%= link_to (user.name.nil? ? user.email : user.name), user_path(user.id) %> </p>
-                        <%end%>
-                    </div>
+    <div class="row">        
+        <div class="col-lg-5">
+            <div class="thing">
+                <div class="insidething">
+                    <h4>Selecciona un usuario</h4>
+                    <%@users.each do |user|%>
+                    <p> <%= link_to (user.name.nil? ? user.email : user.name), user_path(user.id) %> </p>
+                    <%end%>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="thing">
-                    <div class="insidething">          
-                        <%= render 'layouts/activitylist' %>
-                        <div class="activitylistform">
-                            <p>Crear Actividad</p>
-                            <%= form_for @activitylist.build, url: new_activitylist_path, html: {method: "post"} do |f| %>
-                                <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
-                                <%= f.text_field :name, placeholder:"Actividad", size: 10%>
-                                <%= f.text_field :person, placeholder:"Responsable", size: 10%>
-                                <%= f.submit 'Crear', class: 'btn btn-secondary btn-sm', id:"card" %>
-                            <% end %>
-                        <a href="#" style="visibility:hidden" class = "btn btn-primary" id="showformactlist">Crear Actividad</a>
-                        </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="thing">
+                <div class="insidething">          
+                    <%= render 'layouts/activitylist' %>
+                    <div class="activitylistform">              
+                        Crear Actividad
+                        <%= form_for @activitylist.build do |f| %>
+                            <%= f.date_select :date, start_year: 2018, end_year: Time.now.year, placeholder:"Fecha"%>    
+                            <%= f.text_field :name, placeholder:"Actividad", size: 10%>
+                            <%= f.text_field :person, placeholder:"Responsable", size: 10%>
+                            <%= f.submit 'Subir', class: 'btn btn-secondary btn-sm', id:"card" %>
+                        <% end %>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     
 </div>
 

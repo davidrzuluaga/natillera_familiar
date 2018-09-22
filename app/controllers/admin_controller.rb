@@ -146,7 +146,24 @@ class AdminController < ApplicationController
             redirect_to inicio_path
         end    
     end
-    
+
+    def newactivitylist
+        @activitylist = Activitylist.new
+    end
+
+    def modifyactivitylist
+        @activitylist = Activitylist.find(params[:id])
+    end
+
+    def updateactivitylist
+        if current_user.admin?
+            @activitylist = Activitylist.update(params[:id], activity_list_params)
+            redirect_to admin_path
+        else
+            redirect_to inicio_path
+        end    
+    end
+
     def createactivitylist
         if current_user.admin?
             @activitylist = Activitylist.new(activity_list_params)
